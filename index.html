@@ -1,0 +1,808 @@
+<title>Cura AI Pitch Deck</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+
+<style>
+:root{
+  --ink:#101613;
+  --soft:#4f5f58;
+  --mute:#6c7d74;
+  --rule:#cfe0d6;
+  --hair:#e4ece7;
+  --paper:#f3f6f2;
+  --green:#15503a;
+  --green-lo:#4FAE84;
+  --green-hi:#1C5A40;
+  --heart:#2E7D5B;
+  --flag:#b4772a;
+  --stage:#dfe6e1;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  background:var(--stage);
+  color:var(--ink);
+  font-family:"Instrument Sans",system-ui,-apple-system,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;
+}
+
+/* ---------------- stage ---------------- */
+.deck{position:fixed;inset:0;display:grid;place-items:center}
+.slide{
+  display:none;
+  width:min(100vw,177.78vh);
+  aspect-ratio:16/9;
+  container-type:inline-size;
+  background:#ffffff;
+  position:relative;
+  overflow:hidden;
+  flex-direction:column;
+  padding:4.6cqw 5.2cqw 3.4cqw;
+  box-shadow:0 2px 24px rgba(16,40,30,.14);
+}
+.slide.on{display:flex}
+
+/* ---------------- chrome ---------------- */
+.hd{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;flex:0 0 auto}
+.lock{display:flex;align-items:center;gap:1.2cqw}
+.lock svg{width:2.7cqw;height:2.7cqw;display:block}
+.wm{font-weight:700;font-size:1.65cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--green);white-space:nowrap}
+.wm i{font-style:normal;color:var(--green-lo)}
+.pg{display:flex;align-items:center;gap:1.1cqw;font-family:"DM Mono",monospace;font-size:1.3cqw;color:var(--mute);letter-spacing:.09em}
+.pg svg{width:2.6cqw;height:2.6cqw;display:block}
+.hr{height:1px;background:var(--rule);margin:1.7cqw 0 0;position:relative;z-index:2;flex:0 0 auto}
+.ft{
+  margin-top:auto;padding-top:1.4cqw;border-top:1px solid var(--hair);
+  display:flex;justify-content:space-between;gap:2cqw;
+  font-family:"DM Mono",monospace;font-size:1.25cqw;color:var(--mute);letter-spacing:.05em;
+  position:relative;z-index:2;flex:0 0 auto;
+}
+.ft span:last-child{text-align:right}
+
+/* body region between rule and footer */
+.bd{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;min-height:0;padding:2.2cqw 0}
+.bd.top{justify-content:flex-start}
+
+/* ghost arcs */
+.ghost{position:absolute;pointer-events:none;z-index:0;opacity:.07}
+.ghost.bl{left:-17cqw;bottom:-24cqw;width:58cqw}
+.ghost.tr{right:-15cqw;top:-18cqw;width:48cqw;opacity:.055}
+
+/* ---------------- type ---------------- */
+.kicker{font-family:"DM Mono",monospace;font-size:1.35cqw;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin:0 0 1.6cqw}
+.kicker.flagged{color:var(--flag)}
+h1{font-weight:700;font-size:7.2cqw;line-height:.97;letter-spacing:-.035em;margin:0;max-width:14ch}
+h2{font-weight:700;font-size:5.4cqw;line-height:1;letter-spacing:-.033em;margin:0;max-width:17ch}
+h3{font-weight:700;font-size:3.8cqw;line-height:1.06;letter-spacing:-.03em;margin:0;max-width:23ch}
+h1 em,h2 em,h3 em{font-style:normal;color:var(--green)}
+.lead{font-size:1.95cqw;line-height:1.5;color:var(--soft);margin:1.7cqw 0 0;max-width:48ch}
+.lead.tight{max-width:40ch}
+.quote{font-weight:700;font-size:4.6cqw;line-height:1.08;letter-spacing:-.03em;margin:0;max-width:20ch}
+
+/* ---------------- components ---------------- */
+.cols{display:grid;gap:2.2cqw}
+.c2{grid-template-columns:1fr 1fr}
+.c3{grid-template-columns:repeat(3,1fr)}
+.c4{grid-template-columns:repeat(4,1fr)}
+
+.pillar{border-top:2px solid var(--green);padding-top:1.5cqw;display:flex;flex-direction:column;gap:.8cqw}
+.pillar .n{font-family:"DM Mono",monospace;font-size:1.2cqw;letter-spacing:.14em;color:var(--mute)}
+.pillar .t{font-weight:600;font-size:2.2cqw;line-height:1.15;letter-spacing:-.02em}
+.pillar .d{font-size:1.55cqw;line-height:1.45;color:var(--soft)}
+
+.tile{background:var(--paper);padding:2cqw 2.2cqw;display:flex;flex-direction:column;gap:.7cqw}
+.tile .t{font-weight:600;font-size:2cqw;line-height:1.15;letter-spacing:-.02em}
+.tile .d{font-size:1.5cqw;line-height:1.45;color:var(--soft)}
+
+.metric{display:flex;flex-direction:column}
+.metric .v{font-weight:700;font-size:6.4cqw;line-height:.95;letter-spacing:-.04em;color:var(--green)}
+.metric .v.flag{color:var(--flag)}
+.metric .v.plain{color:var(--ink)}
+.metric .l{font-family:"DM Mono",monospace;font-size:1.3cqw;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-top:.7cqw}
+.metric .s{font-size:1.6cqw;color:var(--soft);margin-top:.5cqw;line-height:1.4}
+
+/* stacked capacity bar */
+.cap{display:flex;height:6.2cqw;border:1px solid var(--rule)}
+.cap .s1{width:30%;background:linear-gradient(180deg,var(--green-lo),var(--green-hi))}
+.cap .s2{width:70%;background:repeating-linear-gradient(135deg,#ffffff 0 6px,var(--hair) 6px 7px);border-left:1px solid var(--rule)}
+.caplegend{display:flex;margin-top:1.2cqw}
+.caplegend .l1{width:30%}
+.caplegend .l2{width:70%}
+.caplegend b{display:block;font-weight:700;font-size:3.2cqw;letter-spacing:-.03em;line-height:1.2;color:var(--green)}
+.caplegend .l2 b{color:var(--flag)}
+.caplegend span{font-family:"DM Mono",monospace;font-size:1.3cqw;color:var(--mute)}
+
+/* data table */
+.tbl{width:100%;border-collapse:collapse;font-size:1.7cqw}
+.tbl th{
+  font-family:"DM Mono",monospace;font-size:1.2cqw;font-weight:400;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--mute);text-align:left;padding:0 1.4cqw 1cqw 0;border-bottom:1px solid var(--rule);
+}
+.tbl th.num,.tbl td.num{text-align:right;font-variant-numeric:tabular-nums}
+.tbl td{padding:1.4cqw 1.4cqw 1.4cqw 0;border-bottom:1px solid var(--hair);vertical-align:middle}
+.tbl td.name{font-weight:600;letter-spacing:-.01em}
+.tbl td.num{font-family:"DM Mono",monospace;font-weight:500;color:var(--green)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl .track{height:.85cqw;background:var(--hair);width:100%;display:block}
+.tbl .track i{display:block;height:100%;background:var(--green)}
+
+/* line items */
+.li{display:flex;justify-content:space-between;align-items:baseline;gap:1.5cqw;padding:1.05cqw 0;border-bottom:1px solid var(--hair);font-size:1.7cqw}
+.li:last-of-type{border-bottom:none}
+.li .k{color:var(--soft)}
+.li .v{font-family:"DM Mono",monospace;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+.li.total{border-top:2px solid var(--green);border-bottom:none;margin-top:.5cqw;padding-top:1.2cqw}
+.li.total .k{color:var(--ink);font-weight:600}
+.li.total .v{font-family:"Instrument Sans",sans-serif;font-weight:700;font-size:2.9cqw;letter-spacing:-.03em;color:var(--green)}
+
+.panel{border:1px solid var(--rule);padding:2.1cqw 2.3cqw;display:flex;flex-direction:column;min-width:0}
+.panel.filled{background:var(--paper);border-color:transparent}
+.panel .ph{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.2cqw}
+.panel .ph .name{font-weight:700;font-size:2.3cqw;letter-spacing:-.025em}
+.panel .ph .tagline{font-family:"DM Mono",monospace;font-size:1.25cqw;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+
+/* composition bar (shared scale) */
+.comp{display:flex;height:1.5cqw;margin-top:1.4cqw;background:var(--hair)}
+.comp i{display:block;height:100%}
+.comp .a{background:var(--green-hi)}
+.comp .b{background:var(--green-lo)}
+.comp .c{background:#9ecdb6}
+.complegend{display:flex;flex-wrap:wrap;gap:.5cqw 1.5cqw;margin-top:.9cqw;font-family:"DM Mono",monospace;font-size:1.2cqw;color:var(--mute)}
+.complegend span{display:flex;align-items:center;gap:.5cqw}
+.complegend i{width:.9cqw;height:.9cqw;display:block}
+
+/* flow diagram */
+.flow{display:flex;align-items:stretch;gap:1.6cqw}
+.flow .node{
+  flex:1;border:1px solid var(--rule);padding:1.9cqw 1.8cqw;display:flex;flex-direction:column;gap:.6cqw;min-width:0;
+}
+.flow .node.accent{background:var(--green);border-color:var(--green);color:#ffffff}
+.flow .node .r{font-family:"DM Mono",monospace;font-size:1.2cqw;letter-spacing:.13em;text-transform:uppercase;color:var(--mute)}
+.flow .node.accent .r{color:#8fd6ac}
+.flow .node .n{font-weight:700;font-size:2.3cqw;letter-spacing:-.025em;line-height:1.1}
+.flow .node .w{font-size:1.5cqw;color:var(--soft);line-height:1.4}
+.flow .node.accent .w{color:rgba(255,255,255,.82)}
+.flow .arrow{display:flex;align-items:center;color:var(--rule);flex:0 0 auto}
+.flow .arrow svg{width:2.6cqw;height:2.6cqw;display:block}
+
+/* checklist */
+.check{display:flex;flex-direction:column;gap:1.15cqw}
+.check .row{display:flex;gap:1.2cqw;align-items:flex-start}
+.check .row svg{width:1.9cqw;height:1.9cqw;flex:0 0 auto;margin-top:.15cqw}
+.check .row .txt b{display:block;font-weight:600;font-size:1.85cqw;letter-spacing:-.015em;line-height:1.25}
+.check .row .txt span{display:block;font-size:1.5cqw;color:var(--soft);line-height:1.4;margin-top:.15cqw}
+
+/* gauge */
+.gauge{display:flex;align-items:center;gap:3.4cqw}
+.gauge svg{width:22cqw;height:22cqw;flex:0 0 auto}
+.gauge .gv{font-weight:700;font-size:5.6cqw;letter-spacing:-.04em;fill:var(--green)}
+.gauge .gl{font-family:"DM Mono",monospace;font-size:5.4px;letter-spacing:.14em;fill:#6c7d74}
+
+/* cover */
+.cover h1{font-size:8cqw;max-width:11ch}
+.cover .byline{
+  display:inline-flex;align-items:center;gap:1.2cqw;margin-top:3cqw;
+  font-family:"DM Mono",monospace;font-size:1.45cqw;letter-spacing:.08em;color:var(--soft);
+}
+.cover .byline b{
+  font-family:"Instrument Sans",sans-serif;font-weight:600;letter-spacing:-.01em;font-size:1.8cqw;color:var(--ink);
+}
+.divider{width:1px;height:1.8cqw;background:var(--rule);display:block}
+
+/* corporate lockup — Suvarna Stack */
+.corp{display:flex;flex-direction:column;align-items:flex-end;gap:.3cqw;line-height:1}
+.corp .cn{font-weight:600;font-size:1.6cqw;letter-spacing:.34em;text-transform:uppercase;color:var(--ink)}
+.corp .cs{display:flex;align-items:center;gap:.6cqw;font-size:1.05cqw;letter-spacing:.44em;text-transform:uppercase;color:var(--mute)}
+.corp .cs::before,.corp .cs::after{content:"";height:1px;width:1.4cqw;background:var(--rule);display:block}
+.corp img{height:3.4cqw;width:auto;display:block}
+
+.cover h1.oneline{white-space:nowrap;max-width:none}
+
+/* big statement */
+.statement{display:flex;flex-direction:column;justify-content:center;height:100%}
+.srow{display:flex;gap:2.4cqw;margin-top:3cqw}
+.srow .s{flex:1;border-top:1px solid var(--rule);padding-top:1.2cqw;font-size:1.6cqw;color:var(--soft);line-height:1.4}
+.srow .s b{display:block;color:var(--ink);font-weight:600;font-size:1.9cqw;margin-bottom:.35cqw;letter-spacing:-.015em}
+
+/* equation */
+.eq{display:flex;align-items:center;gap:2.2cqw;flex-wrap:wrap}
+.eq .term{background:var(--paper);padding:1.7cqw 2cqw;font-weight:600;font-size:2.1cqw;letter-spacing:-.02em;line-height:1.2;max-width:16ch}
+.eq .op{font-weight:700;font-size:3cqw;color:var(--green-lo)}
+
+/* demo slide */
+.demo{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%;gap:2.4cqw}
+.demo h2{max-width:none;font-size:7cqw}
+.demo .spin{width:11cqw;height:11cqw}
+.demo .status{font-family:"DM Mono",monospace;font-size:1.5cqw;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+
+/* animation (per the loading-animation handoff) */
+@keyframes spinCW{to{transform:rotate(360deg)}}
+@keyframes spinCCW{to{transform:rotate(-360deg)}}
+@keyframes pulseHeart{0%,100%{transform:scale(1);opacity:.85}18%{transform:scale(1.18);opacity:1}36%{transform:scale(1);opacity:.9}54%{transform:scale(1.1);opacity:1}}
+.r1{transform-origin:60px 60px;animation:spinCW 2.4s cubic-bezier(.5,0,.5,1) infinite}
+.r2{transform-origin:60px 60px;animation:spinCCW 1.8s cubic-bezier(.5,0,.5,1) infinite}
+.r3{transform-origin:60px 60px;animation:spinCW 1.3s cubic-bezier(.5,0,.5,1) infinite}
+.hb{transform-origin:60px 62px;animation:pulseHeart 1.4s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.r1,.r2,.r3,.hb{animation:none}}
+
+/* ---------------- presenter panel ---------------- */
+.presenter{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:#0f2419;color:#dbe9e1;
+  display:none;grid-template-columns:1fr 1fr auto;gap:26px;
+  padding:16px 22px;font-size:14px;line-height:1.5;
+  border-top:2px solid #2E7D5B;
+}
+.presenter.on{display:grid}
+.presenter .k{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8fd6ac;display:block;margin-bottom:5px}
+.presenter .nx{color:#9db3a8}
+.presenter .clock{font-family:"DM Mono",monospace;font-size:26px;letter-spacing:.04em;color:#ffffff;align-self:center;font-variant-numeric:tabular-nums}
+.hint{
+  position:fixed;right:14px;bottom:12px;z-index:40;
+  font-family:"DM Mono",monospace;font-size:11px;color:#7e8f87;letter-spacing:.06em;
+  transition:opacity .4s;
+}
+.hint.hide{opacity:0}
+body:has(.presenter.on) .hint{display:none}
+
+/* ---------------- print ---------------- */
+@page{size:1280px 720px;margin:0}
+@media print{
+  body{background:#fff;overflow:visible}
+  .deck{position:static;display:block}
+  .slide{display:flex!important;width:1280px;height:720px;aspect-ratio:auto;box-shadow:none;break-after:page;page-break-after:always}
+  .presenter,.hint{display:none!important}
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4FAE84"/><stop offset="1" stop-color="#1C5A40"/>
+    </linearGradient>
+    <symbol id="mark" viewBox="0 0 120 120">
+      <path d="M90.5 34.2 A40 40 0 1 0 90.5 85.8" fill="none" stroke="url(#cg)" stroke-width="9" stroke-linecap="round"/>
+      <path d="M82.9 40.6 A30 30 0 1 0 82.9 79.4" fill="none" stroke="url(#cg)" stroke-width="8" stroke-linecap="round" opacity=".6"/>
+      <path d="M75.3 47.1 A20 20 0 1 0 75.3 72.9" fill="none" stroke="url(#cg)" stroke-width="7" stroke-linecap="round" opacity=".32"/>
+      <path d="M60 57.4c-2-4-8-2.7-8 2 0 4 8 8 8 8s8-4 8-8c0-4.7-6-6-8-2Z" fill="#2E7D5B"/>
+    </symbol>
+    <symbol id="arcs" viewBox="0 0 120 120">
+      <path d="M90.5 34.2 A40 40 0 1 0 90.5 85.8" fill="none" stroke="#1C5A40" stroke-width="9" stroke-linecap="round"/>
+      <path d="M82.9 40.6 A30 30 0 1 0 82.9 79.4" fill="none" stroke="#1C5A40" stroke-width="8" stroke-linecap="round"/>
+      <path d="M75.3 47.1 A20 20 0 1 0 75.3 72.9" fill="none" stroke="#1C5A40" stroke-width="7" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="tick" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="11" fill="none" stroke="#cfe0d6" stroke-width="2"/>
+      <path d="M7 12.4l3.4 3.3L17 8.9" fill="none" stroke="#15503a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="chev" viewBox="0 0 24 24">
+      <path d="M8 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main class="deck" id="deck">
+
+  <!-- 01 -->
+  <section class="slide cover" data-cover data-foot="Presented by Suvarna" data-meta="OPD 1,000+ visits/day · MOPH Hospital Dashboard"
+    data-notes="Open on the number, not the product. A Thai hospital sees over a thousand outpatient visits a day and every one of them has to be coded. Cura AI is how a small coding team keeps up.">
+    <svg class="ghost bl" aria-hidden="true"><use href="#arcs"/></svg>
+    <div class="bd">
+      <h1>Medical<br>Coding <em>AI</em></h1>
+      <p class="lead tight">An AI coding assistant that helps hospital coders work faster and more accurately — in one workspace.</p>
+      <div class="byline">Presented by <b>Suvarna</b><i class="divider"></i>2026</div>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="slide" data-foot="The scale of the daily queue" data-meta="Source: MOPH Hospital Dashboard"
+    data-notes="Pause here. Let the audience do the arithmetic themselves: a thousand visits, a handful of coders, one working day.">
+    <svg class="ghost tr" aria-hidden="true"><use href="#arcs"/></svg>
+    <div class="bd statement">
+      <p class="kicker">The daily reality</p>
+      <h2>Can they check <em>everything?</em></h2>
+      <div class="srow">
+        <div class="s"><b>1,000+</b>OPD visits per day at a provincial hospital</div>
+        <div class="s"><b>Every visit</b>needs a diagnosis code before it can be claimed</div>
+        <div class="s"><b>One shift</b>is all the time the coding team has to do it</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="slide" data-foot="Hospital workflow" data-meta="Where coding sits in the chain">
+    <div class="bd">
+      <p class="kicker">Who is the medical audit?</p>
+      <h3>Every claim passes through one desk at the end of the line.</h3>
+      <div class="flow" style="margin-top:3.4cqw">
+        <div class="node">
+          <span class="r">Step 1</span>
+          <span class="n">Patient</span>
+          <span class="w">Arrives at OPD, is examined and treated</span>
+        </div>
+        <div class="arrow"><svg aria-hidden="true"><use href="#chev"/></svg></div>
+        <div class="node">
+          <span class="r">Step 2</span>
+          <span class="n">Doctor</span>
+          <span class="w">Records diagnosis and treatment in the chart</span>
+        </div>
+        <div class="arrow"><svg aria-hidden="true"><use href="#chev"/></svg></div>
+        <div class="node accent">
+          <span class="r">Step 3</span>
+          <span class="n">Medical audit</span>
+          <span class="w">Reads the record, analyses it, assigns ICD-10 and ICD-9-CM codes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="slide" data-foot="What the job actually is" data-meta="">
+    <svg class="ghost bl" aria-hidden="true"><use href="#arcs"/></svg>
+    <div class="bd statement">
+      <p class="kicker">A common misconception</p>
+      <h2>Coding <em>≠</em> data entry</h2>
+      <div class="eq" style="margin-top:3.2cqw">
+        <div class="term">Medical information</div>
+        <span class="op">+</span>
+        <div class="term">Professional judgment</div>
+        <span class="op">+</span>
+        <div class="term">Coding knowledge</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="slide" data-foot="Why the queue keeps growing" data-meta="">
+    <div class="bd">
+      <p class="kicker">The squeeze</p>
+      <h3>More patients. More data. The same human capacity.</h3>
+      <div class="cols c4" style="margin-top:3.2cqw">
+        <div class="tile"><span class="t">Too many cases</span><span class="d">Volume rises every year; the coding team does not</span></div>
+        <div class="tile"><span class="t">Not enough coding time</span><span class="d">Each case competes with the rest of the day's queue</span></div>
+        <div class="tile"><span class="t">Too many steps</span><span class="d">Read, search, cross-check, enter, verify — per case</span></div>
+        <div class="tile"><span class="t">Coding is complex</span><span class="d">Judgment calls that a lookup table cannot make</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="slide" data-foot="Coder headcount by hospital size" data-meta="280,000 – 3,000,000 outpatient visits per year">
+    <div class="bd">
+      <p class="kicker">Capacity, by hospital size</p>
+      <h3>Between 280K and 3M outpatient visits a year — coded by this many people.</h3>
+      <table class="tbl" style="margin-top:2.8cqw">
+        <thead>
+          <tr><th style="width:34%">Hospital</th><th style="width:38%">Coding team, relative size</th><th class="num" style="width:28%">Coders</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="name">Community hospital</td><td><span class="track"><i style="width:12.5%"></i></span></td><td class="num">2 – 5</td></tr>
+          <tr><td class="name">General / provincial hospital</td><td><span class="track"><i style="width:25%"></i></span></td><td class="num">5 – 10</td></tr>
+          <tr><td class="name">Large university hospital</td><td><span class="track"><i style="width:100%"></i></span></td><td class="num">20 – 40</td></tr>
+        </tbody>
+      </table>
+      <p class="lead" style="font-size:1.55cqw;margin-top:1.8cqw">Bars are drawn to the upper bound of each range, against a scale of 40 coders.</p>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section class="slide" data-foot="What a coder has to hold in their head" data-meta="">
+    <svg class="ghost tr" aria-hidden="true"><use href="#arcs"/></svg>
+    <div class="bd">
+      <p class="kicker">Three kinds of expertise</p>
+      <h3>“Medical coding is more than entering a code.”</h3>
+      <div class="cols c3" style="margin-top:3.4cqw">
+        <div class="pillar">
+          <span class="n">01</span>
+          <span class="t">Coding knowledge &amp; experience</span>
+          <span class="d">ICD-10 and ICD-9-CM conventions, sequencing rules, and the exceptions learned on the job</span>
+        </div>
+        <div class="pillar">
+          <span class="n">02</span>
+          <span class="t">Medical knowledge</span>
+          <span class="d">Reading a clinical note well enough to know what was actually diagnosed and treated</span>
+        </div>
+        <div class="pillar">
+          <span class="n">03</span>
+          <span class="t">Understanding healthcare benefits</span>
+          <span class="d">How each scheme reimburses, and what a claim needs in order to hold up</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section class="slide" data-foot="Total 1,000 cases per day" data-meta="Illustrative of a provincial hospital's daily queue">
+    <div class="bd">
+      <p class="kicker">The gap</p>
+      <h3>The problem isn't just more work. It's limited capacity.</h3>
+      <div class="cap" style="margin-top:3.2cqw"><div class="s1"></div><div class="s2"></div></div>
+      <div class="caplegend">
+        <div class="l1"><b>300</b><span>Thoroughly reviewed</span></div>
+        <div class="l2"><b>700</b><span>Still require attention</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 -->
+  <section class="slide" data-foot="Where the 700 cases go" data-meta="">
+    <div class="bd">
+      <p class="kicker flagged">700 cases still require attention</p>
+      <h3>“Coders spend time finding information, not just coding.”</h3>
+      <div class="cols c4" style="margin-top:3.2cqw">
+        <div class="tile"><span class="t">Finding information</span><span class="d">Hunting for the note, the lab, the prior visit</span></div>
+        <div class="tile"><span class="t">Using multiple systems</span><span class="d">HIS, lab, imaging, coding reference, claim portal</span></div>
+        <div class="tile"><span class="t">Cross-checking</span><span class="d">Making the record and the code agree</span></div>
+        <div class="tile"><span class="t">Screening specific cases</span><span class="d">Deciding which files deserve a closer look</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" data-foot="The shift" data-meta="Same coder, different surface">
+    <div class="bd">
+      <p class="kicker">What if we could multiply the coder?</p>
+      <h3>Not a replacement. A second pair of hands on the same desk.</h3>
+      <div class="cols c2" style="margin-top:3cqw">
+        <div class="panel">
+          <div class="ph"><span class="name">Before</span><span class="tagline">Today</span></div>
+          <div class="li"><span class="k">Coder</span><span class="v">1</span></div>
+          <div class="li"><span class="k">Systems open at once</span><span class="v">6 tabs</span></div>
+          <div class="li"><span class="k">Cases thoroughly reviewed</span><span class="v">300 / day</span></div>
+        </div>
+        <div class="panel filled">
+          <div class="ph"><span class="name">After</span><span class="tagline">With Cura AI</span></div>
+          <div class="li"><span class="k">Coder + AI</span><span class="v">1 + 1</span></div>
+          <div class="li"><span class="k">Systems open at once</span><span class="v">1 workspace</span></div>
+          <div class="li"><span class="k">Cases screened with AI</span><span class="v">1,000 / day</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" data-cover data-foot="The product" data-meta="Medical coding assistant">
+    <svg class="ghost bl" aria-hidden="true"><use href="#arcs"/></svg>
+    <div class="bd">
+      <p class="kicker">The product</p>
+      <h1 style="font-size:6.6cqw;max-width:12ch">Cura <em>AI</em></h1>
+      <p class="lead">An AI-powered medical coding assistant that helps hospital coders code faster and more accurately, in one workspace.</p>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide" data-foot="Cura AI workspace" data-meta="Live against demo data"
+    data-notes="Screen share here. Suggested path: queue → open an uncoded case → AI suggestion with confidence → accept/edit → push back to iMed. Keep it to four minutes.">
+    <div class="bd demo">
+      <svg class="spin" viewBox="0 0 120 120" role="status" aria-label="Cura AI loading">
+        <g class="r1"><path d="M90.5 34.2 A40 40 0 1 0 90.5 85.8" fill="none" stroke="url(#cg)" stroke-width="9" stroke-linecap="round"/></g>
+        <g class="r2"><path d="M82.9 40.6 A30 30 0 1 0 82.9 79.4" fill="none" stroke="url(#cg)" stroke-width="8" stroke-linecap="round" opacity=".6"/></g>
+        <g class="r3"><path d="M75.3 47.1 A20 20 0 1 0 75.3 72.9" fill="none" stroke="url(#cg)" stroke-width="7" stroke-linecap="round" opacity=".32"/></g>
+        <g class="hb"><path d="M60 57.4c-2-4-8-2.7-8 2 0 4 8 8 8 8s8-4 8-8c0-4.7-6-6-8-2Z" fill="#2E7D5B"/></g>
+      </svg>
+      <h2>Live demo</h2>
+      <p class="status">Loading workspace…</p>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide" data-foot="Measured on the demo dataset" data-meta="AI-assisted case screening">
+    <div class="bd">
+      <p class="kicker">What changes on the desk</p>
+      <h3>More cases. Less manual work.</h3>
+      <div class="gauge" style="margin-top:2.4cqw">
+        <svg viewBox="0 0 120 120" role="img" aria-label="83 percent of cases screened with AI assistance">
+          <circle cx="60" cy="60" r="46" fill="none" stroke="#e4ece7" stroke-width="9"/>
+          <circle cx="60" cy="60" r="46" fill="none" stroke="url(#cg)" stroke-width="9" stroke-linecap="round"
+                  stroke-dasharray="289.03" stroke-dashoffset="49.13" transform="rotate(-90 60 60)"/>
+          <text class="gv" x="60" y="60" text-anchor="middle" dominant-baseline="middle" style="font-size:26px">83%</text>
+          <text class="gl" x="60" y="78" text-anchor="middle">AI ASSISTED</text>
+        </svg>
+        <div style="flex:1;min-width:0">
+          <div class="check">
+            <div class="row"><svg aria-hidden="true"><use href="#tick"/></svg><span class="txt"><b>AI case screening</b><span>Every case in the queue is read and ranked, not just the 300 a person reaches</span></span></div>
+            <div class="row"><svg aria-hidden="true"><use href="#tick"/></svg><span class="txt"><b>AI code suggestion</b><span>ICD-10 and ICD-9-CM candidates with the evidence they came from</span></span></div>
+            <div class="row"><svg aria-hidden="true"><use href="#tick"/></svg><span class="txt"><b>AI flagged cases</b><span>The files that need a human decision are surfaced first</span></span></div>
+            <div class="row"><svg aria-hidden="true"><use href="#tick"/></svg><span class="txt"><b>From 6 tabs to 1 workspace</b><span>Record, codes, references and submission on one screen</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide" data-foot="Go-to-market" data-meta="One product, two buyers">
+    <div class="bd">
+      <p class="kicker">Market</p>
+      <h3>One solution. Two hospital markets.</h3>
+      <div class="cols c2" style="margin-top:3cqw">
+        <div class="panel">
+          <div class="ph"><span class="name">Government hospital</span><span class="tagline">Community · Provincial</span></div>
+          <p class="lead" style="font-size:1.6cqw;margin-top:0">Budget-cycle procurement, MOPH reporting obligations, iMed and HIS integration required.</p>
+        </div>
+        <div class="panel">
+          <div class="ph"><span class="name">Private hospital</span><span class="tagline">Group · Standalone</span></div>
+          <p class="lead" style="font-size:1.6cqw;margin-top:0">Faster decisions, revenue-cycle driven, values claim accuracy and turnaround time.</p>
+        </div>
+      </div>
+      <div class="panel filled" style="margin-top:2.2cqw">
+        <div class="ph"><span class="name">What we sell</span><span class="tagline">Recurring</span></div>
+        <p class="lead" style="font-size:1.7cqw;margin-top:0">An annual software licence, per hospital.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 -->
+  <section class="slide" data-foot="Revenue beyond the licence" data-meta="Charged once, at deployment">
+    <div class="bd">
+      <p class="kicker">Additional revenue</p>
+      <h3>Two lines on top of the annual licence.</h3>
+      <div class="cols c2" style="margin-top:3.2cqw">
+        <div class="metric">
+          <span class="v">฿75,000</span>
+          <span class="l">Implementation</span>
+          <span class="s">HIS/API integration, staging instance, coder onboarding — one-time, at go-live</span>
+        </div>
+        <div class="metric">
+          <span class="v">฿30,000</span>
+          <span class="l">Enterprise support</span>
+          <span class="s">Priority response, on-site escalation, release management — annual</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 -->
+  <section class="slide" data-foot="Licence pricing" data-meta="Per hospital, per year">
+    <div class="bd">
+      <p class="kicker">Pricing</p>
+      <h3>Commit for longer, pay less per year.</h3>
+      <div class="cols c2" style="margin-top:3cqw">
+        <div class="panel">
+          <div class="ph"><span class="name">Basic</span><span class="tagline">1 year plan</span></div>
+          <div class="metric"><span class="v" style="font-size:5cqw">฿150,000</span><span class="l">per year</span></div>
+        </div>
+        <div class="panel filled">
+          <div class="ph"><span class="name">Plus</span><span class="tagline">3 year plan</span></div>
+          <div class="metric"><span class="v" style="font-size:5cqw">฿120,000</span><span class="l">per year · ฿360,000 over the term</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 -->
+  <section class="slide" data-foot="First-year revenue per hospital" data-meta="Bars share one scale: ฿255,000">
+    <div class="bd">
+      <p class="kicker">First-year financial summary</p>
+      <h3 style="font-size:3.2cqw">Revenue, cost and gross profit at a glance.</h3>
+      <div class="cols c2" style="margin-top:2.4cqw">
+        <div class="panel">
+          <div class="ph"><span class="name">Basic</span><span class="tagline">1 year plan</span></div>
+          <div class="li"><span class="k">Annual licence</span><span class="v">฿150,000</span></div>
+          <div class="li"><span class="k">Implementation</span><span class="v">฿75,000</span></div>
+          <div class="li"><span class="k">Enterprise support</span><span class="v">฿30,000</span></div>
+          <div class="li total"><span class="k">Total revenue</span><span class="v">฿255,000</span></div>
+          <div class="comp"><i class="a" style="width:58.8%"></i><i class="b" style="width:29.4%"></i><i class="c" style="width:11.8%"></i></div>
+        </div>
+        <div class="panel">
+          <div class="ph"><span class="name">Plus</span><span class="tagline">3 year plan</span></div>
+          <div class="li"><span class="k">Annual licence</span><span class="v">฿120,000</span></div>
+          <div class="li"><span class="k">Implementation</span><span class="v">฿75,000</span></div>
+          <div class="li"><span class="k">Enterprise support</span><span class="v">฿30,000</span></div>
+          <div class="li total"><span class="k">Total revenue</span><span class="v">฿225,000</span></div>
+          <div class="comp"><i class="a" style="width:47.1%"></i><i class="b" style="width:29.4%"></i><i class="c" style="width:11.8%"></i></div>
+        </div>
+      </div>
+      <div class="complegend" style="margin-top:1.4cqw">
+        <span><i class="a" style="background:#1C5A40"></i>Annual licence</span>
+        <span><i class="b" style="background:#4FAE84"></i>Implementation</span>
+        <span><i class="c" style="background:#9ecdb6"></i>Enterprise support</span>
+        <span style="margin-left:auto">Implementation cost ฿35,000 – ฿40,000 → gross profit ฿35,000 – ฿40,000</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 18 -->
+  <section class="slide" data-foot="ROI example · one hospital, one day" data-meta="At ฿500 recovered per additional case reviewed">
+    <div class="bd">
+      <p class="kicker">Return on investment</p>
+      <h3>From 300 checked cases to 1,000.</h3>
+      <table class="tbl" style="margin-top:2.6cqw">
+        <thead>
+          <tr><th style="width:30%">Cases reviewed per day</th><th style="width:44%">Relative volume</th><th class="num" style="width:26%">Value at ฿500 / case</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="name">300 — today</td><td><span class="track"><i style="width:30%"></i></span></td><td class="num">฿150,000</td></tr>
+          <tr><td class="name">1,000 — with Cura AI</td><td><span class="track"><i style="width:100%"></i></span></td><td class="num">฿500,000</td></tr>
+        </tbody>
+      </table>
+      <div class="cols c3" style="margin-top:2.6cqw">
+        <div class="metric"><span class="v" style="font-size:4.4cqw">700</span><span class="l">Additional cases per day</span></div>
+        <div class="metric"><span class="v" style="font-size:4.4cqw">฿350,000</span><span class="l">Additional value per day</span></div>
+        <div class="metric"><span class="v plain" style="font-size:4.4cqw">3.3×</span><span class="l">Coverage of the daily queue</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 19 -->
+  <section class="slide" data-foot="Integration" data-meta="No change to how doctors work">
+    <div class="bd">
+      <p class="kicker">How Cura AI connects</p>
+      <h3>It sits beside the HIS you already run.</h3>
+      <div class="flow" style="margin-top:3.4cqw">
+        <div class="node">
+          <span class="r">Source</span>
+          <span class="n">Existing HIS</span>
+          <span class="w">iMed or the hospital's own system — unchanged</span>
+        </div>
+        <div class="arrow"><svg aria-hidden="true"><use href="#chev"/></svg></div>
+        <div class="node">
+          <span class="r">Interface</span>
+          <span class="n">API</span>
+          <span class="w">Read the record, push the approved code back</span>
+        </div>
+        <div class="arrow"><svg aria-hidden="true"><use href="#chev"/></svg></div>
+        <div class="node accent">
+          <span class="r">Workspace</span>
+          <span class="n">Cura AI</span>
+          <span class="w">Screening, suggestion and review — where the coder works</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 20 -->
+  <section class="slide" data-foot="Deployment prep checklist" data-meta="Agreed before go-live">
+    <div class="bd">
+      <p class="kicker">Before we start</p>
+      <h3 style="font-size:3.2cqw">What the hospital's IT team needs to prepare.</h3>
+      <div class="cols c2" style="margin-top:2.4cqw">
+        <div class="panel">
+          <div class="ph"><span class="name">Technical</span><span class="tagline">IT</span></div>
+          <div class="check">
+            <div class="row"><svg aria-hidden="true"><use href="#tick"/></svg><span class="txt"><b>Authentication</b><span>OIDC against the hospital's identity provider</span></span></div>
+            <div class="row"><svg aria-hidden="true"><use href="#tick"/></svg><span class="txt"><b>Domain allowlisting</b><span>One hostname plus a TLS certificate</span></span></div>
+            <div class="row"><svg aria-hidden="true"><use href="#tick"/></svg><span class="txt"><b>Staging</b><span>A separate instance on the hospital server</span></span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="ph"><span class="name">Data &amp; third party</span><span class="tagline">HIS</span></div>
+          <div class="check">
+            <div class="row"><svg aria-hidden="true"><use href="#tick"/></svg><span class="txt"><b>Read record</b><span>Access to the visit, diagnosis and treatment fields</span></span></div>
+            <div class="row"><svg aria-hidden="true"><use href="#tick"/></svg><span class="txt"><b>Push code back to iMed</b><span>Approved codes written back to the source system</span></span></div>
+            <div class="row"><svg aria-hidden="true"><use href="#tick"/></svg><span class="txt"><b>Hospital HIS integration</b><span>Field mapping agreed with the vendor</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 21 -->
+  <section class="slide" data-foot="On-premise server specification" data-meta="One-time hardware, hospital-owned">
+    <div class="bd">
+      <p class="kicker">Server hardware</p>
+      <h3>Runs on one machine inside the hospital network.</h3>
+      <table class="tbl" style="margin-top:2.6cqw">
+        <tbody>
+          <tr><td class="name" style="width:34%">CPU</td><td>8 cores</td></tr>
+          <tr><td class="name">RAM</td><td>32 GB</td></tr>
+          <tr><td class="name">Storage</td><td>500 GB SSD</td></tr>
+          <tr><td class="name">GPU</td><td>Required for on-premise inference</td></tr>
+          <tr><td class="name">Operating system</td><td>Linux with Docker</td></tr>
+        </tbody>
+      </table>
+      <div class="li total" style="margin-top:2.4cqw"><span class="k">Total hardware cost</span><span class="v">฿35,000</span></div>
+    </div>
+  </section>
+
+  <!-- 22 -->
+  <section class="slide cover" data-cover data-foot="Presented by Suvarna" data-meta="2026">
+    <svg class="ghost bl" aria-hidden="true"><use href="#arcs"/></svg>
+    <div class="bd">
+      <h1 class="oneline">Thank <em>you</em></h1>
+      <p class="lead tight">Happy to walk through the workspace again, or talk through what integration would look like at your hospital.</p>
+      <div class="byline">Presented by <b>Suvarna</b><i class="divider"></i>2026</div>
+    </div>
+  </section>
+
+</main>
+
+<aside class="presenter" id="presenter" aria-live="polite">
+  <div><span class="k">Speaker notes</span><span id="pNotes">—</span></div>
+  <div><span class="k">Up next</span><span class="nx" id="pNext">—</span></div>
+  <div class="clock" id="pClock">00:00</div>
+</aside>
+<p class="hint" id="hint">← → navigate · F fullscreen · P presenter</p>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var C = 2 * Math.PI * 12; // progress ring circumference, r=12
+
+  // Build the chrome for every slide: lockup + numbered progress ring + footer.
+  slides.forEach(function(s, i){
+    var isCover = s.hasAttribute('data-cover');
+    var hd = document.createElement('div');
+    hd.className = 'hd';
+    var ring = isCover ? '' :
+      '<svg viewBox="0 0 32 32" aria-hidden="true">' +
+        '<circle cx="16" cy="16" r="12" fill="none" stroke="#e4ece7" stroke-width="4"/>' +
+        '<circle cx="16" cy="16" r="12" fill="none" stroke="#15503a" stroke-width="4" stroke-linecap="round" ' +
+        'stroke-dasharray="' + C.toFixed(2) + '" stroke-dashoffset="' + (C * (1 - (i + 1) / total)).toFixed(2) + '" ' +
+        'transform="rotate(-90 16 16)"/></svg>';
+    hd.innerHTML =
+      '<div class="lock"><svg aria-hidden="true"><use href="#mark"/></svg><span class="wm">Cura <i>AI</i></span></div>' +
+      (isCover
+        ? '<div class="corp"><span class="cn">Suvarna</span><span class="cs">Stack</span></div>'
+        : '<div class="pg"><span>' + String(i + 1).padStart(2, '0') + ' / ' + total + '</span>' + ring + '</div>');
+    s.insertBefore(hd, s.firstChild);
+
+    var hr = document.createElement('div');
+    hr.className = 'hr';
+    s.insertBefore(hr, hd.nextSibling);
+
+    var ft = document.createElement('div');
+    ft.className = 'ft';
+    ft.innerHTML = '<span>' + (s.dataset.foot || '') + '</span><span>' + (s.dataset.meta || '') + '</span>';
+    s.appendChild(ft);
+  });
+
+  var idx = 0;
+  var pNotes = document.getElementById('pNotes');
+  var pNext = document.getElementById('pNext');
+  var hint = document.getElementById('hint');
+
+  function titleOf(s){
+    var h = s.querySelector('h1, h2, h3');
+    return h ? h.textContent.replace(/\s+/g, ' ').trim() : '—';
+  }
+
+  function show(n){
+    idx = Math.max(0, Math.min(total - 1, n));
+    slides.forEach(function(s, i){ s.classList.toggle('on', i === idx); });
+    if (location.hash !== '#' + (idx + 1)) history.replaceState(null, '', '#' + (idx + 1));
+    pNotes.textContent = slides[idx].dataset.notes || titleOf(slides[idx]);
+    pNext.textContent = idx + 1 < total ? (idx + 2) + '. ' + titleOf(slides[idx + 1]) : 'End of deck';
+  }
+
+  function next(){ show(idx + 1); }
+  function prev(){ show(idx - 1); }
+
+  document.addEventListener('keydown', function(e){
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    switch (e.key) {
+      case 'ArrowRight': case 'ArrowDown': case 'PageDown': case ' ': e.preventDefault(); next(); break;
+      case 'ArrowLeft': case 'ArrowUp': case 'PageUp': e.preventDefault(); prev(); break;
+      case 'Home': e.preventDefault(); show(0); break;
+      case 'End': e.preventDefault(); show(total - 1); break;
+      case 'f': case 'F':
+        if (document.fullscreenElement) document.exitFullscreen();
+        else document.documentElement.requestFullscreen().catch(function(){});
+        break;
+      case 'p': case 'P': document.getElementById('presenter').classList.toggle('on'); break;
+    }
+  });
+
+  document.getElementById('deck').addEventListener('click', function(e){
+    next();
+  });
+
+  // Clock starts when the deck does.
+  var t0 = Date.now();
+  setInterval(function(){
+    var s = Math.floor((Date.now() - t0) / 1000);
+    document.getElementById('pClock').textContent =
+      String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+  }, 1000);
+
+  setTimeout(function(){ hint.classList.add('hide'); }, 6000);
+
+  var start = parseInt((location.hash || '').slice(1), 10);
+  show(isNaN(start) ? 0 : start - 1);
+})();
+</script>
