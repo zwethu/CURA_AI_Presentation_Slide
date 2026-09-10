@@ -55,7 +55,7 @@ body{
 .wm i{font-style:normal;color:var(--green-lo)}
 .pg{display:flex;align-items:center;gap:1.1cqw;font-family:"DM Mono",monospace;font-size:1.3cqw;color:var(--mute);letter-spacing:.09em}
 .pg svg{width:2.6cqw;height:2.6cqw;display:block}
-.hr{height:1px;background:var(--rule);margin:1.7cqw 0 0;position:relative;z-index:2;flex:0 0 auto}
+.hr{height:1px;background:var(--rule);margin:1.7cqw 0 .8cqw;position:relative;z-index:2;flex:0 0 auto}
 .ft{
   margin-top:auto;padding-top:1.4cqw;border-top:1px solid var(--hair);
   display:flex;justify-content:space-between;gap:2cqw;
@@ -74,7 +74,7 @@ body{
 .ghost.tr{right:-15cqw;top:-18cqw;width:48cqw;opacity:.055}
 
 /* ---------------- type ---------------- */
-.kicker{font-family:"DM Mono",monospace;font-size:1.35cqw;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin:0 0 1.6cqw}
+.kicker{font-family:"DM Mono","SF Mono",Menlo,Consolas,monospace;font-size:1.35cqw;line-height:1.3;letter-spacing:.16em;text-transform:uppercase;color:var(--green);margin:0 0 1.6cqw}
 .kicker.flagged{color:var(--flag)}
 h1{font-weight:700;font-size:7.2cqw;line-height:.97;letter-spacing:-.035em;margin:0;max-width:14ch}
 h2{font-weight:700;font-size:5.4cqw;line-height:1;letter-spacing:-.033em;margin:0;max-width:17ch}
@@ -85,13 +85,13 @@ h1 em,h2 em,h3 em{font-style:normal;color:var(--green)}
 .quote{font-weight:700;font-size:4.6cqw;line-height:1.08;letter-spacing:-.03em;margin:0;max-width:20ch}
 
 /* ---------------- components ---------------- */
-.cols{display:grid;gap:2.2cqw}
+.cols{display:grid;gap:1.8cqw}
 .c2{grid-template-columns:1fr 1fr}
 .c3{grid-template-columns:repeat(3,1fr)}
 .c4{grid-template-columns:repeat(4,1fr)}
 
-.pillar{border-top:2px solid var(--green);padding-top:1.5cqw;display:flex;flex-direction:column;gap:.8cqw}
-.pillar .n{font-family:"DM Mono",monospace;font-size:1.2cqw;letter-spacing:.14em;color:var(--mute)}
+.pillar{border-top:2px solid var(--green);padding-top:1.5cqw;display:flex;flex-direction:column;gap:.6cqw}
+.pillar .n{font-family:"DM Mono",monospace;font-weight:700;font-size:2.2cqw;letter-spacing:-.02em;color:var(--green-lo)}
 .pillar .t{font-weight:600;font-size:2.2cqw;line-height:1.15;letter-spacing:-.02em}
 .pillar .d{font-size:1.55cqw;line-height:1.45;color:var(--soft)}
 .pillar:not(:has(.d)){gap:1.1cqw}
@@ -101,14 +101,14 @@ h1 em,h2 em,h3 em{font-style:normal;color:var(--green)}
 .tile .t{font-weight:600;font-size:2cqw;line-height:1.15;letter-spacing:-.02em}
 .tile .d{font-size:1.5cqw;line-height:1.45;color:var(--soft)}
 .tile:not(:has(.d)){padding:2.6cqw 2.4cqw}
-.tile:not(:has(.d)) .t{font-size:2.5cqw}
+.tile:not(:has(.d)) .t{font-size:2.8cqw}
 
 .metric{display:flex;flex-direction:column}
-.metric .v{font-weight:700;font-size:6.4cqw;line-height:.95;letter-spacing:-.04em;color:var(--green)}
+.metric .v{font-weight:700;font-size:7.4cqw;line-height:.92;letter-spacing:-.015em;color:var(--green)}
 .metric .v.flag{color:var(--flag)}
 .metric .v.plain{color:var(--ink)}
-.metric .l{font-family:"DM Mono",monospace;font-size:1.3cqw;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-top:.7cqw}
-.metric .s{font-size:1.6cqw;color:var(--soft);margin-top:.5cqw;line-height:1.4}
+.metric .l{font-family:"DM Mono",monospace;font-size:1.3cqw;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin-top:.8cqw}
+.metric .s{font-size:1.45cqw;color:var(--soft);margin-top:.5cqw;line-height:1.4}
 
 /* stacked capacity bar */
 .cap{display:flex;height:6.2cqw;border:1px solid var(--rule)}
@@ -117,7 +117,7 @@ h1 em,h2 em,h3 em{font-style:normal;color:var(--green)}
 .caplegend{display:flex;margin-top:1.2cqw}
 .caplegend .l1{width:30%}
 .caplegend .l2{width:70%}
-.caplegend b{display:block;font-weight:700;font-size:3.2cqw;letter-spacing:-.03em;line-height:1.2;color:var(--green)}
+.caplegend b{display:block;font-weight:700;font-size:4.6cqw;letter-spacing:-.035em;line-height:1.1;color:var(--green)}
 .caplegend .l2 b{color:var(--flag)}
 .caplegend span{font-family:"DM Mono",monospace;font-size:1.3cqw;color:var(--mute)}
 
@@ -142,11 +142,20 @@ h1 em,h2 em,h3 em{font-style:normal;color:var(--green)}
 .li .v{font-family:"DM Mono",monospace;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
 .li.total{border-top:2px solid var(--green);border-bottom:none;margin-top:.5cqw;padding-top:1.2cqw}
 .li.total .k{color:var(--ink);font-weight:600}
-.li.total .v{font-family:"Instrument Sans",sans-serif;font-weight:700;font-size:2.9cqw;letter-spacing:-.03em;color:var(--green)}
+.li.total .v{font-family:"Instrument Sans",sans-serif;font-weight:700;font-size:3.6cqw;letter-spacing:-.015em;color:var(--green)}
 
 .bizrows .li{align-items:baseline;gap:1.4cqw;padding:.85cqw 0}
 .bizrows .li .k{font-family:"DM Mono",monospace;font-size:1.1cqw;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);flex:0 0 auto;white-space:nowrap}
-.bizrows .li .v{font-family:"Instrument Sans",sans-serif;font-weight:600;font-size:1.5cqw;line-height:1.3;letter-spacing:-.01em;white-space:normal;text-align:right;color:var(--ink)}
+.bizrows .li .v{font-family:"Instrument Sans",sans-serif;font-weight:700;font-size:1.65cqw;line-height:1.3;letter-spacing:-.015em;white-space:normal;text-align:right;color:var(--ink)}
+.bizrows .li.total .v{font-size:2.8cqw;letter-spacing:-.015em;color:var(--green)}
+
+.finrows .panel{padding:1.5cqw 2cqw}
+.finrows .ph{margin-bottom:.9cqw}
+.finrows .ph .name{font-size:2.1cqw}
+.finrows .li{padding:.75cqw 0;font-size:1.5cqw}
+.finrows .li.total{padding-top:.85cqw;margin-top:.4cqw}
+.finrows .li.total .v{font-size:2.7cqw}
+.finrows .comp{margin-top:1cqw;height:1.2cqw}
 
 .panel{border:1px solid var(--rule);padding:2.1cqw 2.3cqw;display:flex;flex-direction:column;min-width:0}
 .panel.filled{background:var(--paper);border-color:transparent}
@@ -240,18 +249,6 @@ h1 em,h2 em,h3 em{font-style:normal;color:var(--green)}
 .hb{transform-origin:60px 62px;animation:pulseHeart 1.4s ease-in-out infinite}
 @media (prefers-reduced-motion:reduce){.r1,.r2,.r3,.hb{animation:none}}
 
-/* ---------------- presenter panel ---------------- */
-.presenter{
-  position:fixed;left:0;right:0;bottom:0;z-index:50;
-  background:#0f2419;color:#dbe9e1;
-  display:none;grid-template-columns:1fr 1fr auto;gap:26px;
-  padding:16px 22px;font-size:14px;line-height:1.5;
-  border-top:2px solid #2E7D5B;
-}
-.presenter.on{display:grid}
-.presenter .k{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8fd6ac;display:block;margin-bottom:5px}
-.presenter .nx{color:#9db3a8}
-.presenter .clock{font-family:"DM Mono",monospace;font-size:26px;letter-spacing:.04em;color:#ffffff;align-self:center;font-variant-numeric:tabular-nums}
 .hint{
   position:fixed;right:14px;bottom:12px;z-index:40;
   font-family:"DM Mono",monospace;font-size:11px;color:#7e8f87;letter-spacing:.06em;
@@ -279,7 +276,6 @@ h1 em,h2 em,h3 em{font-style:normal;color:var(--green)}
 @media (prefers-reduced-motion:reduce){.wipe{display:none}}
 @media print{.wipe{display:none!important}}
 .hint.hide{opacity:0}
-body:has(.presenter.on) .hint{display:none}
 
 /* ---------------- print ---------------- */
 @page{size:1280px 720px;margin:0}
@@ -287,7 +283,7 @@ body:has(.presenter.on) .hint{display:none}
   body{background:#fff;overflow:visible}
   .deck{position:static;display:block}
   .slide{display:flex!important;width:1280px;height:720px;aspect-ratio:auto;box-shadow:none;break-after:page;page-break-after:always}
-  .presenter,.hint{display:none!important}
+  .hint{display:none!important}
 }
 </style>
 
@@ -320,8 +316,7 @@ body:has(.presenter.on) .hint{display:none}
 <main class="deck" id="deck">
 
   <!-- 01 -->
-  <section class="slide cover" data-cover data-foot="Presented by Suvarna" data-meta="OPD 1,500+ visits/day · MOPH Hospital Dashboard"
-    data-notes="Open on the number, not the product. A Thai hospital sees over fifteen hundred outpatient visits a day and every one of them has to be coded. Cura AI is how a small coding team keeps up.">
+  <section class="slide cover" data-cover data-foot="Presented by Suvarna" data-meta="OPD 1,500+ visits/day · MOPH Hospital Dashboard">
     <svg class="ghost bl" aria-hidden="true"><use href="#arcs"/></svg>
     <div class="bd">
       <h1>Medical<br>Coding <em>AI</em></h1>
@@ -331,14 +326,16 @@ body:has(.presenter.on) .hint{display:none}
   </section>
 
   <!-- 02 -->
-  <section class="slide" data-foot="The scale of the daily queue" data-meta="Source: MOPH Hospital Dashboard"
-    data-notes="Pause here. Let the audience do the arithmetic themselves: fifteen hundred visits, a handful of coders, one working day.">
+  <section class="slide" data-foot="The scale of the daily queue" data-meta="Source: MOPH Hospital Dashboard">
     <svg class="ghost tr" aria-hidden="true"><use href="#arcs"/></svg>
     <div class="bd statement">
       <p class="kicker">The daily reality</p>
-      <h2>Can they check <em>everything?</em></h2>
-      <div class="srow">
-        <div class="s"><b>1,500+</b>OPD visits per day at a provincial hospital</div>
+      <div class="metric">
+        <span class="v" style="font-size:10cqw">1,500+</span>
+        <span class="l">OPD visits, one hospital, one day</span>
+      </div>
+      <h2 style="margin-top:1.8cqw">Can they check <em>everything?</em></h2>
+      <div class="srow" style="margin-top:2.2cqw">
         <div class="s"><b>Every visit</b>needs a diagnosis code before it can be claimed</div>
         <div class="s"><b>One shift</b>is all the time the coding team has to do it</div>
       </div>
@@ -406,17 +403,21 @@ body:has(.presenter.on) .hint{display:none}
   <section class="slide" data-foot="Coder headcount by hospital size" data-meta="280,000 – 3,000,000 outpatient visits per year">
     <div class="bd">
       <p class="kicker">Capacity, by hospital size</p>
-      <h3>Between 280K and 3M outpatient visits a year — coded by this many people.</h3>
-      <table class="tbl" style="margin-top:2.8cqw">
-        <thead>
-          <tr><th style="width:60%">Hospital</th><th class="num" style="width:40%">Coders</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="name">Community hospital</td><td class="num">2 – 5</td></tr>
-          <tr><td class="name">General / provincial hospital</td><td class="num">5 – 10</td></tr>
-          <tr><td class="name">Large university hospital</td><td class="num">20 – 40</td></tr>
-        </tbody>
-      </table>
+      <h3>How many coders, per hospital size?</h3>
+      <div class="cols c3" style="margin-top:3.6cqw">
+        <div class="metric">
+          <span class="v" style="font-size:5.8cqw">2–5</span>
+          <span class="l">Community hospital</span>
+        </div>
+        <div class="metric">
+          <span class="v" style="font-size:5.8cqw">5–10</span>
+          <span class="l">General / provincial</span>
+        </div>
+        <div class="metric">
+          <span class="v" style="font-size:5.8cqw">20–40</span>
+          <span class="l">Large university</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -444,22 +445,23 @@ body:has(.presenter.on) .hint{display:none}
   </section>
 
   <!-- 08 -->
-  <section class="slide" data-foot="Total 1,500 cases per day" data-meta="Illustrative of a provincial hospital's daily queue">
+  <section class="slide" data-foot="Total 1,500 cases per day" data-meta="5 coders · 8–11 min/case · 7-hr shift — worst case in slide 6's 5–10 range">
     <div class="bd">
       <p class="kicker">The gap</p>
       <h3>The problem isn't just more work. It's limited capacity.</h3>
-      <div class="cap" style="margin-top:3.2cqw"><div class="s1"></div><div class="s2"></div></div>
-      <div class="caplegend">
-        <div class="l1"><b>300</b><span>Thoroughly reviewed</span></div>
-        <div class="l2"><b>1,200</b><span>Still require attention</span></div>
+      <div class="cap" style="margin-top:3.2cqw"><div class="s1" style="width:15%"></div><div class="s2" style="width:85%"></div></div>
+      <div class="caplegend" style="margin-top:1.6cqw">
+        <div class="l1"><b>190–260</b><span>Reviewable per day, at 5 coders</span></div>
+        <div class="l2"><b>1,240–1,310</b><span>Still require attention</span></div>
       </div>
+      <p class="lead" style="font-size:1.6cqw;margin-top:1.6cqw;max-width:none">Even at full effort, the team reaches just <b style="color:var(--flag);font-weight:700">13–17%</b> of the day's queue.</p>
     </div>
   </section>
 
   <!-- 09 -->
-  <section class="slide" data-foot="Where the 1,200 cases go" data-meta="">
+  <section class="slide" data-foot="Where the backlog goes" data-meta="">
     <div class="bd">
-      <p class="kicker flagged">1,200 cases still require attention</p>
+      <p class="kicker flagged">1,240–1,310 cases still require attention</p>
       <h3>“Coders spend time finding information, not just coding.”</h3>
       <div class="cols c4" style="margin-top:3.2cqw">
         <div class="tile"><span class="t">Finding information</span></div>
@@ -480,7 +482,7 @@ body:has(.presenter.on) .hint{display:none}
           <div class="ph"><span class="name">Before</span><span class="tagline">Today</span></div>
           <div class="li"><span class="k">Coder</span><span class="v">1</span></div>
           <div class="li"><span class="k">Systems open at once</span><span class="v">6 tabs</span></div>
-          <div class="li"><span class="k">Cases thoroughly reviewed</span><span class="v">300 / day</span></div>
+          <div class="li"><span class="k">Cases thoroughly reviewed</span><span class="v">190–260 / day</span></div>
         </div>
         <div class="panel filled">
           <div class="ph"><span class="name">After</span><span class="tagline">With Cura AI</span></div>
@@ -503,8 +505,7 @@ body:has(.presenter.on) .hint{display:none}
   </section>
 
   <!-- 12 -->
-  <section class="slide" data-foot="Cura AI workspace" data-meta="Live against demo data"
-    data-notes="Screen share here. Suggested path: queue → open an uncoded case → AI suggestion with confidence → accept/edit → push back to iMed. Keep it to four minutes.">
+  <section class="slide" data-foot="Cura AI workspace" data-meta="Live against demo data">
     <div class="bd demo">
       <svg class="spin" viewBox="0 0 120 120" role="status" aria-label="Cura AI loading">
         <g class="r1"><path d="M90.5 34.2 A40 40 0 1 0 90.5 85.8" fill="none" stroke="url(#cg)" stroke-width="9" stroke-linecap="round"/></g>
@@ -599,12 +600,12 @@ body:has(.presenter.on) .hint{display:none}
           <circle cx="100" cy="95" r="95" fill="var(--green-lo)"/>
           <circle cx="100" cy="132" r="58" fill="var(--green-hi)"/>
           <circle cx="100" cy="160" r="30" fill="var(--green)"/>
-          <text x="100" y="34" text-anchor="middle" style="font-weight:700;font-size:18px;font-family:'Instrument Sans',sans-serif" fill="#ffffff">TAM</text>
-          <text x="100" y="49" text-anchor="middle" style="font-size:7.5px;letter-spacing:.06em;font-family:'DM Mono',monospace" fill="rgba(255,255,255,.85)">฿8,000M / YEAR</text>
-          <text x="100" y="92" text-anchor="middle" style="font-weight:700;font-size:14px;font-family:'Instrument Sans',sans-serif" fill="#ffffff">SAM</text>
-          <text x="100" y="105" text-anchor="middle" style="font-size:6.5px;letter-spacing:.06em;font-family:'DM Mono',monospace" fill="rgba(255,255,255,.85)">฿1,500M / YEAR</text>
-          <text x="100" y="151" text-anchor="middle" style="font-weight:700;font-size:10.5px;font-family:'Instrument Sans',sans-serif" fill="#ffffff">SOM</text>
-          <text x="100" y="162" text-anchor="middle" style="font-size:5.5px;letter-spacing:.05em;font-family:'DM Mono',monospace" fill="rgba(255,255,255,.85)">฿15–30M</text>
+          <text x="100" y="30" text-anchor="middle" style="font-weight:600;font-size:9px;letter-spacing:.1em;font-family:'DM Mono',monospace" fill="rgba(255,255,255,.8)">TAM</text>
+          <text x="100" y="48" text-anchor="middle" style="font-weight:700;font-size:13px;letter-spacing:-.02em;font-family:'Instrument Sans',sans-serif" fill="#ffffff">฿8,000M</text>
+          <text x="100" y="89" text-anchor="middle" style="font-weight:600;font-size:8px;letter-spacing:.1em;font-family:'DM Mono',monospace" fill="rgba(255,255,255,.8)">SAM</text>
+          <text x="100" y="105" text-anchor="middle" style="font-weight:700;font-size:11px;letter-spacing:-.02em;font-family:'Instrument Sans',sans-serif" fill="#ffffff">฿1,500M</text>
+          <text x="100" y="149" text-anchor="middle" style="font-weight:600;font-size:6.5px;letter-spacing:.09em;font-family:'DM Mono',monospace" fill="rgba(255,255,255,.8)">SOM</text>
+          <text x="100" y="162" text-anchor="middle" style="font-weight:700;font-size:9.5px;letter-spacing:-.02em;font-family:'Instrument Sans',sans-serif" fill="#ffffff">฿15–30M</text>
         </svg>
         <div class="check" style="flex:1;min-width:0;gap:1.6cqw">
           <div class="row">
@@ -633,12 +634,12 @@ body:has(.presenter.on) .hint{display:none}
         <div class="metric">
           <span class="v">฿75,000</span>
           <span class="l">Implementation</span>
-          <span class="s">HIS/API integration, staging instance, coder onboarding — one-time, at go-live</span>
+          <span class="s">One-time, at go-live</span>
         </div>
         <div class="metric">
           <span class="v">฿30,000</span>
           <span class="l">Enterprise support</span>
-          <span class="s">Priority response, on-site escalation, release management — annual</span>
+          <span class="s">Ongoing, annual</span>
         </div>
       </div>
     </div>
@@ -652,22 +653,22 @@ body:has(.presenter.on) .hint{display:none}
       <div class="cols c2" style="margin-top:3cqw">
         <div class="panel">
           <div class="ph"><span class="name">Basic</span><span class="tagline">1 year plan</span></div>
-          <div class="metric"><span class="v" style="font-size:5cqw">฿150,000</span><span class="l">per year</span></div>
+          <div class="metric"><span class="v" style="font-size:6.6cqw">฿150,000</span><span class="l">per year</span></div>
         </div>
         <div class="panel filled">
           <div class="ph"><span class="name">Plus</span><span class="tagline">3 year plan</span></div>
-          <div class="metric"><span class="v" style="font-size:5cqw">฿120,000</span><span class="l">per year · ฿360,000 over the term</span></div>
+          <div class="metric"><span class="v" style="font-size:6.6cqw">฿120,000</span><span class="l">per year · ฿360,000 over the term</span></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- 19 -->
-  <section class="slide" data-foot="First-year revenue per hospital" data-meta="Bars share one scale: ฿255,000">
+  <section class="slide" data-foot="First-year revenue per hospital" data-meta="Implementation cost = gross profit: ฿35,000–40,000">
     <div class="bd">
-      <p class="kicker">First-year financial summary</p>
-      <h3 style="font-size:3.2cqw">Revenue, cost and gross profit at a glance.</h3>
-      <div class="cols c2" style="margin-top:2.4cqw">
+      <p class="kicker" style="margin-bottom:1.1cqw">First-year financial summary</p>
+      <h3 style="font-size:3cqw">Revenue, cost and gross profit at a glance.</h3>
+      <div class="cols c2 finrows" style="margin-top:2.2cqw">
         <div class="panel">
           <div class="ph"><span class="name">Basic</span><span class="tagline">1 year plan</span></div>
           <div class="li"><span class="k">Annual licence</span><span class="v">฿150,000</span></div>
@@ -685,35 +686,35 @@ body:has(.presenter.on) .hint{display:none}
           <div class="comp"><i class="a" style="width:47.1%"></i><i class="b" style="width:29.4%"></i><i class="c" style="width:11.8%"></i></div>
         </div>
       </div>
-      <div class="complegend" style="margin-top:1.4cqw">
+      <div class="complegend" style="margin-top:1.8cqw">
         <span><i class="a" style="background:#1C5A40"></i>Annual licence</span>
         <span><i class="b" style="background:#4FAE84"></i>Implementation</span>
         <span><i class="c" style="background:#9ecdb6"></i>Enterprise support</span>
-        <span style="margin-left:auto">Implementation cost ฿35,000 – ฿40,000 → gross profit ฿35,000 – ฿40,000</span>
       </div>
     </div>
   </section>
 
   <!-- 20 -->
-  <section class="slide" data-foot="ROI example · one hospital, one day" data-meta="Same 5× capacity gain, two claim-value assumptions">
+  <section class="slide" data-foot="Value example · one hospital, one day" data-meta="190–260 → ~1,050 cases/day · ~4× the daily coverage">
     <div class="bd">
-      <p class="kicker">Return on investment</p>
-      <h3 style="font-size:3.2cqw">From 300 checked cases to 1,500 — for either buyer.</h3>
+      <p class="kicker">Value at scale</p>
+      <h3 style="font-size:3.2cqw;max-width:none">From 190–260 reviewed cases to ~1,050 — for either buyer.</h3>
       <div class="cols c2 bizrows" style="margin-top:2.6cqw">
         <div class="panel">
-          <div class="ph"><span class="name">Government hospital</span><span class="tagline">฿500 / case</span></div>
-          <div class="li"><span class="k">Cases reviewed / day</span><span class="v">300 → 1,500</span></div>
-          <div class="li"><span class="k">Value: today → with Cura AI</span><span class="v">฿150,000 → ฿750,000</span></div>
-          <div class="li total"><span class="k">Additional value / day</span><span class="v">฿600,000</span></div>
+          <div class="ph"><span class="name">Government hospital</span><span class="tagline">฿340 / case (est.)</span></div>
+          <div class="li"><span class="k">Cases reviewed / day</span><span class="v">190–260 → ~1,050</span></div>
+          <div class="li"><span class="k">Today → with Cura AI</span><span class="v">฿64,600–88,400 → ~฿357K</span></div>
+          <div class="li total"><span class="k">Additional value / day</span><span class="v">฿268,600–292,400</span></div>
         </div>
         <div class="panel filled">
-          <div class="ph"><span class="name">Private hospital</span><span class="tagline">฿1,000 / case</span></div>
-          <div class="li"><span class="k">Cases reviewed / day</span><span class="v">300 → 1,500</span></div>
-          <div class="li"><span class="k">Value: today → with Cura AI</span><span class="v">฿300,000 → ฿1,500,000</span></div>
-          <div class="li total"><span class="k">Additional value / day</span><span class="v">฿1,200,000</span></div>
+          <div class="ph"><span class="name">Private hospital</span><span class="tagline">฿1,000 / case (est.)</span></div>
+          <div class="li"><span class="k">Cases reviewed / day</span><span class="v">190–260 → ~1,050</span></div>
+          <div class="li"><span class="k">Today → with Cura AI</span><span class="v">฿190,000–260,000 → ~฿1.05M</span></div>
+          <div class="li total"><span class="k">Additional value / day</span><span class="v">฿790,000–860,000</span></div>
         </div>
       </div>
-      <p class="lead" style="font-size:1.5cqw;margin-top:1.4cqw;max-width:none">Same capacity gain either way — <b style="color:var(--ink);font-weight:600">1,200 additional cases per day, 5× coverage.</b> Only the claim value per case changes the payoff.</p>
+      <p class="lead" style="font-size:1.6cqw;margin-top:1.5cqw;max-width:none">Same gain either way — <b style="color:var(--ink);font-weight:700">~4× the daily coverage</b> (13–17% → ~70%). Only claim value per case changes the total.</p>
+      <p class="lead" style="font-size:1.1cqw;margin-top:.6cqw;max-width:none;color:var(--mute)">Capacity increase, not a revenue guarantee — actual value depends on fees, treatment and reimbursement. Figures are illustrative.</p>
     </div>
   </section>
 
@@ -802,12 +803,7 @@ body:has(.presenter.on) .hint{display:none}
 
 <div class="wipe" id="wipe" aria-hidden="true"></div>
 
-<aside class="presenter" id="presenter" aria-live="polite">
-  <div><span class="k">Speaker notes</span><span id="pNotes">—</span></div>
-  <div><span class="k">Up next</span><span class="nx" id="pNext">—</span></div>
-  <div class="clock" id="pClock">00:00</div>
-</aside>
-<p class="hint" id="hint">← → navigate · F fullscreen · P presenter</p>
+<p class="hint" id="hint">← → navigate · F fullscreen</p>
 
 <script>
 (function(){
@@ -844,16 +840,9 @@ body:has(.presenter.on) .hint{display:none}
   });
 
   var idx = null;
-  var pNotes = document.getElementById('pNotes');
-  var pNext = document.getElementById('pNext');
   var hint = document.getElementById('hint');
   var wipe = document.getElementById('wipe');
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function titleOf(s){
-    var h = s.querySelector('h1, h2, h3');
-    return h ? h.textContent.replace(/\s+/g, ' ').trim() : '—';
-  }
 
   function runWipe(dir){
     wipe.classList.remove('run-fwd', 'run-back');
@@ -870,8 +859,6 @@ body:has(.presenter.on) .hint{display:none}
     var apply = function(){
       slides.forEach(function(s, i){ s.classList.toggle('on', i === next); });
       if (location.hash !== '#' + (next + 1)) history.replaceState(null, '', '#' + (next + 1));
-      pNotes.textContent = slides[next].dataset.notes || titleOf(slides[next]);
-      pNext.textContent = next + 1 < total ? (next + 2) + '. ' + titleOf(slides[next + 1]) : 'End of deck';
     };
 
     if (changed && !reduceMotion) {
@@ -896,21 +883,12 @@ body:has(.presenter.on) .hint{display:none}
         if (document.fullscreenElement) document.exitFullscreen();
         else document.documentElement.requestFullscreen().catch(function(){});
         break;
-      case 'p': case 'P': document.getElementById('presenter').classList.toggle('on'); break;
     }
   });
 
   document.getElementById('deck').addEventListener('click', function(e){
     next();
   });
-
-  // Clock starts when the deck does.
-  var t0 = Date.now();
-  setInterval(function(){
-    var s = Math.floor((Date.now() - t0) / 1000);
-    document.getElementById('pClock').textContent =
-      String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
-  }, 1000);
 
   setTimeout(function(){ hint.classList.add('hide'); }, 6000);
 
